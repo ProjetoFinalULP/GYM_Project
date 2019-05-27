@@ -1,11 +1,14 @@
 <?php
-include 'config.inc';
+    include 'config.inc';
+
+    
+
 
 $sql = "SELECT description, userCreation From weekDay";
-$result = $conn->query($sql);
+$result = mysqli_query($conn, $sql);
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
+if (mysqli_num_rows($result) > 0) {
+      while($row = mysqli_fetch_assoc($result)) {
         echo "id: " . $row["description"]. " - Name: " . $row["userCreation"]. " <br>";
     }
 } else {

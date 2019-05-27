@@ -1,0 +1,32 @@
+doctype html
+html(lang="pl")
+    head
+        title Page title
+        meta(charset="utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no")
+        meta(name="description" content="")
+        meta(name="author" content="")
+        link(rel="stylesheet" href="css/bootstrap/bootstrap-theme.css")
+        link(rel="icon" href="favicon.ico")
+    body
+        .container-fluid
+
+            nav.navbar.navbar-light.justify-content-center
+                a.navbar-brand.mr-0(href="#") 
+                    img(src="images/49464979_2252961474952750_7513931656697217024_n.jpg", alt="Pied Piper", width="100")
+
+
+            section
+                .container.text-center
+                    .row.justify-content-center
+                        .col-md-5.col-lg-4
+                            label.sr-only(for="input1-signin-01") Email
+                            input.form-control.my-3.bg-light#input1-signin-01(type="email" placeholder="Email")
+                            label.sr-only(for="input2-signin-01") Password
+                            input.form-control.my-3.bg-light#input2-signin-01(type="password" placeholder="Password")
+                            button.btn.btn-primary.btn-block.py-2.my-3 Login
+                            a(href="#") 
+
+        script(src="js/jquery/jquery.min.js")
+        script(src="js/popper/popper.min.js")
+        script(src="js/bootstrap/bootstrap.min.js")
