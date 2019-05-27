@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-    <title>Page title</title>
+    <title>Go Up Fitness</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
