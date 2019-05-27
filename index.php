@@ -14,7 +14,7 @@
                 
       <nav class="navbar navbar-expand-lg navbar-light"><a class="navbar-brand" href="#"><img src="images/49464979_2252961474952750_7513931656697217024_n.jpg" alt="Go Up Fitness" width="35"></a>
         <div class="navbar-nav ml-auto">
-            <a class="btn btn-outline-primary mt-2 mt-md-0 ml-lg-3" href="#">Login</a>
+            <a class="btn btn-outline-primary mt-2 mt-md-0 ml-lg-3" href="login.php">Login</a>
         </div>
       </nav>
                 
