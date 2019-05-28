@@ -18,9 +18,7 @@
 
     $rndmpass = strtoupper(substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 8)), 0, 8));
 
-    echo $rndmpass;
-
-    $password = md5($rndmpass);
+    $password = hash('sha256', $rndmpass);
 
     
     $sql_i = "INSERT INTO user (username, firstName, lastName, phoneNumber, email, accessId, userCreation, dateCreation)
@@ -30,10 +28,9 @@
     $sql_login = "INSERT INTO login (userUsername, pass, userCreation, dateCreation) VALUES ('$username', '$password', 'SYSTM', now())";
     $result_login = mysqli_query($conn, $sql_login);
 
-    //header("Location: index.php");
+    header("Location: index.php");
 
     break;
-
 
     }
 

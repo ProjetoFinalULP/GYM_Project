@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
+
+  <?php
+
+    session_start();
+
+    include 'config.inc';
+    
+    $user = $_SESSION['user'];
+
+    $sql_user = "SELECT firstName, lastName
+                 FROM user
+                 WHERE username = '$user'";
+    $result_user = mysqli_query($conn, $sql_user);
+    $row_user = mysqli_fetch_array($result_user);
+
+  ?>
+
     <title>Page title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,7 +38,7 @@
               <li class="nav-item"><a class="nav-link" href="#">Evolu&ccedil;&atilde;o F&iacute;sica</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Aulas de Grupo</a></li>
             </ul><ul class="navbar-nav order-1 order-lg-2"><li class="nav-item d-flex"><a class="nav-link p-0 m-0" href="#"><img class="rounded-circle" src="https://bootstrapshuffle.com/placeholder/pictures/bg_square.svg?primary=007bff" height="40" width="40" alt=""></a></li>
-              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navigations-headers-04" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navigations-headers-04" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $row_user['firstName']." ".$row_user['lastName']." (".$user.")";?></a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navigations-headers-04"><a class="dropdown-item" href="#">Account settings</a><a class="dropdown-item" href="#">Logout</a></div>
               </li>
             </ul></div>
