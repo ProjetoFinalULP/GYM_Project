@@ -5,12 +5,14 @@
         public $name2;
         public $email;
         public $password;
+        public $username;
 
-        public function __construct($name1, $name2, $email, $rndmpass){
+        public function __construct($name1, $name2, $email, $rndmpass, $username){
             $this->name1 = $name1;
             $this->name2 = $name2;
             $this->email = $email;
             $this->password = $rndmpass;
+            $this->username = $username;
         }
 
         public function sendMail(){
@@ -38,8 +40,8 @@
                 */
 
             $mail->setFrom('fprojeto93@gmail.com', 'Go Up Fitness'); // Set the sender of the message.
-            $mail->addAddress( $this->email , $this->name1); // Set the recipient of the message.
-            $mail->Subject = 'Bem Vindo ao Go Up Fitness'; // The subject of the message.
+            $mail->addAddress( $this->email , 'John Doe'); // Set the recipient of the message.
+            $mail->Subject = 'bem vindo'; // The subject of the message.
 
                 /*
                 * Message Content - Choose simple text or HTML email
@@ -49,7 +51,11 @@
             $mail->Body = '
                         <h2>bem vindo</h2>
                         <h4>ola</h4>
+                        <h4>'. $this->name1 .'</h4>
+                        <h4>'. $this->name2 .'</h4>
+                        <h4>'. $this->email .'</h4>
                         <h4>'. $this->password .'</h4>
+                        <h4>'. $this->username .'</h4>           
                         '; // Set a plain text body.
 
                 // ... or send an email with HTML.
@@ -71,4 +77,4 @@
 ?>
 
 
-    
+    	
