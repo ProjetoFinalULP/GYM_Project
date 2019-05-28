@@ -10,11 +10,31 @@
     
     $user = $_SESSION['user'];
 
-    $sql_user = "SELECT firstName, lastName
+    $sql_u = "SELECT firstName,
+                      lastName
+              FROM user
+              WHERE username = '$user'";
+    $result_u = mysqli_query($conn, $sql_u);
+    $row_u = mysqli_fetch_array($result_u);
+
+    $sql_user = "SELECT username,
+                        firstName,
+                        lastName,
+                        phoneNumber,
+                        email,
+                        accessId,
+                        active
+                 FROM user
+                 WHERE active = 'Y'";
+    $result_user = mysqli_query($conn, $sql_user);
+
+
+    $sql_u = "SELECT firstName,
+                        lastName
                  FROM user
                  WHERE username = '$user'";
-    $result_user = mysqli_query($conn, $sql_user);
-    $row_user = mysqli_fetch_array($result_user);
+    $result_u = mysqli_query($conn, $sql_u);
+    $row_u = mysqli_fetch_array($result_u);
 
   ?>
 
@@ -37,9 +57,14 @@
               <li class="nav-item"><a class="nav-link" href="#">Plano Alimentar</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Evolu&ccedil;&atilde;o F&iacute;sica</a></li>
               <li class="nav-item"><a class="nav-link" href="#">Aulas de Grupo</a></li>
+              <li class="nav-item"><a class="nav-link" href="createuser.php">Criar Utilizador</a></li>
             </ul><ul class="navbar-nav order-1 order-lg-2"><li class="nav-item d-flex"><a class="nav-link p-0 m-0" href="#"><img class="rounded-circle" src="https://bootstrapshuffle.com/placeholder/pictures/bg_square.svg?primary=007bff" height="40" width="40" alt=""></a></li>
-              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navigations-headers-04" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $row_user['firstName']." ".$row_user['lastName']." (".$user.")";?></a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navigations-headers-04"><a class="dropdown-item" href="#">Account settings</a><a class="dropdown-item" href="#">Logout</a></div>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navigations-headers-04" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $row_u['firstName']." ".$row_u['lastName']." (".$user.")";?></a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navigations-headers-04">
+                  <a class="dropdown-item" href="settings.php">Account settings</a>
+                  <a class="dropdown-item" href="logout.php">Logout</a>
+                </div>
               </li>
             </ul></div>
         </div>
@@ -52,71 +77,32 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">Invoice</th>
-                  <th scope="col">User</th>
-                  <th scope="col">Order date</th>
-                  <th scope="col">Amount</th>
-                  <th class="text-center" scope="col">Status</th>
-                  <th class="text-center" scope="col">User ID</th>
+                  <th scope="col">Username</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Telefone</th>
+                  <th scope="col">Email</th>
+                  <th class="text-center" scope="col">ID Permissão</th>
+                  <th class="text-center" scope="col">Activo</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Order #118</td>
-                  <td>Sofia Henderson</td>
-                  <td>Nov 04, 2018</td>
-                  <td>$10.00</td>
-                  <td class="text-center"><span class="badge badge-success">Paid</span></td>
-                  <td class="text-center">-</td>
-                </tr>
-                <tr>
-                  <td>Order #119</td>
-                  <td>James Vaughan</td>
-                  <td>Nov 05, 2018</td>
-                  <td>$10.00</td>
-                  <td class="text-center"><span class="badge badge-primary">Registered</span></td>
-                  <td class="text-center">df8d9dbacf1853782</td>
-                </tr>
-                <tr>
-                  <td>Order #120</td>
-                  <td>Megan Kerr</td>
-                  <td>Nov 05, 2018</td>
-                  <td>$50.00</td>
-                  <td class="text-center"><span class="badge badge-success">Paid</span></td>
-                  <td class="text-center">-</td>
-                </tr>
-                <tr>
-                  <td>Order #121</td>
-                  <td>Finley Metcalfe</td>
-                  <td>Nov 08, 2018</td>
-                  <td>$100.00</td>
-                  <td class="text-center"><span class="badge badge-success">Paid</span></td>
-                  <td class="text-center">-</td>
-                </tr>
-                <tr>
-                  <td>Order #123</td>
-                  <td>Louise Ryan</td>
-                  <td>Nov 10, 2018</td>
-                  <td>$50.00</td>
-                  <td class="text-center"><span class="badge badge-danger">Rafunded</span></td>
-                  <td class="text-center">-</td>
-                </tr>
-                <tr>
-                  <td>Order #124</td>
-                  <td>Kayleigh Chadwick</td>
-                  <td>Nov 14, 2018</td>
-                  <td>$10.00</td>
-                  <td class="text-center"><span class="badge badge-success">Paid</span></td>
-                  <td class="text-center">-</td>
-                </tr>
-                <tr>
-                  <td>Order #125</td>
-                  <td>Elise Anderson</td>
-                  <td>Nov 14, 2018</td>
-                  <td>$50.00</td>
-                  <td class="text-center"><span class="badge badge-warning">Unpaid</span></td>
-                  <td class="text-center">-</td>
-                </tr>
+              <?php 
+                if(mysqli_num_rows($result_user) > 0){
+                  while($row_i = mysqli_fetch_array($result_user)){
+              ?>
+                    <tr>
+                      <td><?php echo $row_i['username'];?></td>
+                      <td><?php echo $row_i['firstName']." ".$row_i['lastName'];?></td>
+                      <td><?php echo $row_i['phoneNumber'];?></td>
+                      <td><?php echo $row_i['email'];?></td>
+                      <td><?php if($row_i['accessId'] == 1){echo "Admin";}else{echo "Utilizador";};?></td>
+                      <td><?php if($row_i['active'] == 'Y'){echo "Sim";}else{echo "Não";};?></td>
+                    </tr>
+              <?php
+                  }
+                }
+              ?>
+
               </tbody>
             </table>
           </div>
