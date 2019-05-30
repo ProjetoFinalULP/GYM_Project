@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="icon" href="favicon.ico">
   </head>
+
+  <?php
+
+    session_start();
+
+    include 'config.inc';
+    
+    if(isset($_SESSION['user'])){
+    
+  ?>
+
   <body>
     <div class="container-fluid">
                 
@@ -30,7 +41,7 @@
         </nav>  
                 
       <section>
-        <form method="post" name="createexe">
+        <form method="post" name="createexe" enctype="multipart/form-data">
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-5 col-lg-4">
@@ -38,8 +49,10 @@
                 <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Nome Exercicio" name="exenome">
                 <label class="sr-only" for="textarea-contacts-02">Descrição</label>
                 <textarea class="form-control mb-3" id="textarea-contacts-02" rows="5" placeholder="Descrição" name="descricao"></textarea>             
-                <input class="btn btn-primary btn-block py-2 my-3" name="image" type="file" >
-                <button class="btn btn-primary btn-block py-2 my-3" formaction="exeSave.php?s=1">Guardar</button>
+                <input class="btn btn-primary btn-block py-2 my-3" name="image1" type="file" >
+                <input class="btn btn-primary btn-block py-2 my-3" name="image2" type="file" >
+                <input class="btn btn-primary btn-block py-2 my-3" name="image3" type="file" >
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=3">Guardar</button>
               </div>
             </div>
           </div>
@@ -50,5 +63,12 @@
     <script src="js/popper/popper.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
   </body>
+  
+  <?php
+    }else{
+      header("Location: error.php");
+    }
+  ?>
+
 </html>
 

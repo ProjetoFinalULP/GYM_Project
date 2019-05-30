@@ -20,6 +20,8 @@ if($checkpass == $row['pass']){
 }else{
 
     echo "NÃO TENS ACESSO!";
+    sleep(5);
+    header("Location: index.php");
 }
 
 ?>

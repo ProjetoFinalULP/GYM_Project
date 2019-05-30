@@ -1,26 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-
-  <?php
-
-  session_start();
-
-  include 'config.inc';
-
-  $user = $_SESSION['user'];
-
-  $sql_info = "SELECT firstName,
-                      lastName,
-                      phoneNumber,
-                      email
-                FROM user
-                WHERE username = '$user'";
-  $result_info = mysqli_query($conn, $sql_info);
-  $row_info = mysqli_fetch_array($result_info);
-
-  ?>
-
     <title>Page title</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -29,6 +9,28 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="icon" href="favicon.ico">
   </head>
+
+<?php
+
+  session_start();
+
+  include 'config.inc';
+  
+  if(isset($_SESSION['user'])){
+
+    $user = $_SESSION['user'];
+
+    $sql_info = "SELECT firstName,
+                        lastName,
+                        phoneNumber,
+                        email
+                  FROM user
+                  WHERE username = '$user'";
+    $result_info = mysqli_query($conn, $sql_info);
+    $row_info = mysqli_fetch_array($result_info);
+
+?>
+
   <body>
     <div class="container-fluid">
                 
@@ -62,5 +64,13 @@
     <script src="js/popper/popper.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
   </body>
+
+<?php
+  }else{
+
+    header("Location: error.php");
+    
+  }
+?>
 </html>
 

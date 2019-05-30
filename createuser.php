@@ -1,13 +1,23 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
+    <title>Page title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+    <link rel="icon" href="favicon.ico">
+  </head>
 
-    <?php
+  <?php
     
     session_start();
 
     include 'config.inc';
     
+    if(isset($_SESSION['user'])){
+
     $user = $_SESSION['user'];
 
     $sql_u = "SELECT firstName,
@@ -19,15 +29,6 @@
     
     ?>
 
-
-    <title>Page title</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-    <link rel="icon" href="favicon.ico">
-  </head>
   <body>
     <div class="container-fluid">
                 
@@ -77,5 +78,10 @@
     <script src="js/popper/popper.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
   </body>
+  <?php
+    }else{
+      header("Location: error.php");
+    }
+  ?>
 </html>
 
