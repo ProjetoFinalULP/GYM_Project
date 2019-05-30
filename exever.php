@@ -4,12 +4,12 @@
 
     include 'config.inc';
 
-    $sql_exe = "SELECT description, content, photo1, photo2, photo3, active FROM exercise";
+    $sql_exe = "SELECT id, description, content, photo1, photo2, photo3, active FROM exercise";
               
              
     $result_exe = mysqli_query($conn, $sql_exe);
     $row_exe = mysqli_fetch_array($result_exe);
-    print_r('$row_exe'); 
+    //print_r($row_exe); 
 
 ?>
   <head>
@@ -49,25 +49,25 @@
               <thead>
                 <tr>
                   <th scope="col">Nome Exercicio</th>
-                  <th scope="col">Descrição</th>
+                  <th scope="col">Descriï¿½ï¿½o</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
-                  <th scope="col">Estado</th>
-                  <th scope="col">Opção</th>
+                <th scope="col">Estado</th>
+                  <th scope="col">Opï¿½ï¿½o</th>
                 </tr>
               </thead>
               <tbody>
-              <?php 
+               <?php 
                   if(mysqli_num_rows($result_exe) > 0){
                     while($row_exe = mysqli_fetch_array($result_exe)){
                 ?>
                       <tr>
                         <td><?php echo $row_exe['description'];?></td>
                         <td><?php echo $row_exe['content'];?></td>
-                        <td><?php echo  "<img src='images/" . $row_exe['photo1'] . "' width:"500" height:"500" >";?></td>
-                        <td><?php echo  "<img src='images/" . $row_exe['photo2'] . "' width:"500" height:"500" >";?></td>
-                        <td><?php echo  "<img src='images/" . $row_exe['photo3'] . "' width:"500" height:"500" >";?></td>
+                        <td><?php echo  "<img src='images/".$row_exe['photo1']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
+                        <td><?php echo  "<img src='images/".$row_exe['photo2']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
+                        <td><?php echo  "<img src='images/".$row_exe['photo3']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
                         <td><?php
                           if ($row_exe['active'] == 1) {
                             echo "Ativo";
@@ -75,8 +75,7 @@
                             echo "Desativado";
                           }
                         ?></td>
-                        <td><a>Editar</a> </td>
-                        <a href=""></a>
+                        <td><a href="#">Editar</a> </td>
                       </tr>
                 <?php
                     }
@@ -92,5 +91,4 @@
     <script src="js/popper/popper.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
   </body>
-</html>
-
+</html>	
