@@ -25,21 +25,31 @@
     <div class="container-fluid">
                 
     <nav class="navbar navbar-expand-lg navbar-light"><a class="navbar-brand" href="#"><img src="images/49464979_2252961474952750_7513931656697217024_n.jpg" alt="Go Up Fitness" width="35"></a>
-          <div class="navbar-nav ml-auto">
-              <div class="d-flex flex-column flex-lg-row align-items-start justify-content-between w-100">
-                <ul class="navbar-nav ml-auto">
-                  <li class="nav-item d-flex"><a class="nav-link p-0 m-0" href="#"><img class="rounded-circle" src="https://bootstrapshuffle.com/placeholder/pictures/bg_square.svg?primary=007bff" height="40" width="40" alt=""></a></li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" id="navigations-headers-04" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
-                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navigations-headers-04">
-                        <a class="dropdown-item" href="#">Account settings</a>
-                        <a class="dropdown-item" href="#">Logout</a>
-                      </div>
-                    </li>
-                </ul>
-              </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigations-04" aria-controls="navigations-04" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navigations-04">
+          <div class="d-flex flex-column flex-lg-row align-items-start justify-content-between w-100">
+            <ul class="navbar-nav order-2 order-lg-1">
+              <li class="nav-item"><a class="nav-link active" href="createuser.php">Adicionar Utilizador<span class="sr-only">(current)</span></a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Inscrever Aula de Grupo</a></li>
+              <li class="nav-item"><a class="nav-link" href="#">Inscrever Aula de Personal Trainer</a></li>
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">Outros</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="manageusers.php">Gerir Utilizador</a>
+                  <a class="dropdown-item" href="#">Gerir Calendario de AvaliaÃ§Ã£o</a>
+                  <a class="dropdown-item" href="#">Gerir Aulas de Grupo</a>             
+                  <a class="dropdown-item" href="exever.php">Gerir Exercicios</a>  
+                </div>
+              </li>
+            </ul>
+            <ul class="navbar-nav order-1 order-lg-2">
+              <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navigations-headers-04" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Profile</a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navigations-headers-04"><a class="dropdown-item" href="#">Account settings</a><a class="dropdown-item" href="#">Logout</a></div>
+              </li>
+            </ul>
           </div>
-        </nav>
+        </div>
+      </nav>
+
       <a class="btn btn-primary btn-block py-2 my-3" href="exeadd.php">Adicionar Exercicio</a>          
       <section class="py-4">
         <div class="container-fluid">
@@ -49,12 +59,12 @@
               <thead>
                 <tr>
                   <th scope="col">Nome Exercicio</th>
-                  <th scope="col">Descrição</th>
+                  <th scope="col">Descriï¿½ï¿½o</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Opção</th>
+                  <th scope="col">Opï¿½ï¿½o</th>
                 </tr>
               </thead>
               <tbody>
