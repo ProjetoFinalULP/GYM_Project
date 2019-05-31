@@ -61,54 +61,153 @@
 
     break;
 
-    case 3: //adiciona exercicios
+    case 3: //adiciona e exercicios
 
+        $exename = $_POST['exenome'];
+        $descricao = $_POST['descricao'];
+        $image1 = $_FILES['image1'];
+        $image2 = $_FILES['image2'];
+        $image3 = $_FILES['image3'];
+        $allowed = array('jpg','jpeg','png');
+    
+        //imagem 1
+        $imageName1 = $_FILES['image1']['name'];
+        $imageTmpName1 = $_FILES['image1']['tmp_name'];
+    
+        $imageExt1 = explode('.', $imageName1);
+        $imageActExt1 = strtolower(end($imageExt1));
+    
+        if (in_array($imageActExt1, $allowed)) {
+            $imageActName1 = uniqid('', true) . "." . $imageActExt1;
+            $target = 'images/img_exe/'. $imageActName1;
+            move_uploaded_file($imageTmpName1, $target);
+        }else{
+            $imageActName1 = "NULL1";
+        }
+    
+        //imagem 2
+        $imageName2 = $_FILES['image2']['name'];
+        $imageTmpName2 = $_FILES['image2']['tmp_name'];
+    
+        $imageExt2 = explode('.', $imageName2);
+        $imageActExt2 = strtolower(end($imageExt2));
+    
+        if (in_array($imageActExt2, $allowed)) {
+            $imageActName2 = uniqid('', true) . "." . $imageActExt2;
+            $target = 'images/img_exe/'. $imageActName2;
+            move_uploaded_file($imageTmpName2, $target);
+        }else{
+            $imageActName2 = "NULL2";
+        }
+    
+        //imagem 3
+        $imageName3 = $_FILES['image3']['name'];
+        $imageTmpName3 = $_FILES['image3']['tmp_name'];
+    
+        $imageExt3 = explode('.', $imageName3);
+        $imageActExt3 = strtolower(end($imageExt3));
+    
+        if (in_array($imageActExt3, $allowed)) {
+            $imageActName3 = uniqid('', true) . "." . $imageActExt3;
+            $target = 'images/img_exe/'. $imageActName3;
+            move_uploaded_file($imageTmpName3, $target);
+        }else{
+            $imageActName3 = "NULL3";
+        }
+    
+        $sql_e = "INSERT INTO exercise (description, content, photo1, photo2, photo3, active, userCreation, dateCreation) VALUES ('$exename', '$descricao', '$imageActName1', '$imageActName2', '$imageActName3', 1, 'SYSTM', now())";
+        $result_e = mysqli_query($conn, $sql_e);
+    
+        header("Location: exever.php");
+
+    break;
+
+    case 4 : //edit exercicio
+        $var_value = $_POST['id_exe'];
         $exename = $_POST['exenome'];
         $descricao =$_POST['descricao'];
         $image1 = $_FILES['image1'];
         $image2 = $_FILES['image2'];
         $image3 = $_FILES['image3'];
-
+        $allowed = array('jpg','jpeg','png');
+    
         //imagem 1
-
         $imageName1 = $_FILES['image1']['name'];
         $imageTmpName1 = $_FILES['image1']['tmp_name'];
-
+    
         $imageExt1 = explode('.', $imageName1);
         $imageActExt1 = strtolower(end($imageExt1));
-        $imageActName1 = uniqid('', true) . "." . $imageActExt1;
-        $target1 = 'images/'. $imageActName1;
-        move_uploaded_file($imageTmpName1, $target1);
-
+    
+        if (in_array($imageActExt1, $allowed)) {
+            $imageActName1 = uniqid('', true) . "." . $imageActExt1;
+            $target1 = 'images/img_exe/'. $imageActName1;
+            move_uploaded_file($imageTmpName1, $target1);
+        }else{
+            $sql_img1 = "SELECT photo1 FROM exercise WHERE id = '$var_value'";
+            $result_img1 = mysqli_query($conn, $sql_img1);
+            $row_img1 = mysqli_fetch_array($result_img1);
+            $imageActName1 = $row_img1['photo1'];
+        }
+    
         //imagem 2
-
         $imageName2 = $_FILES['image2']['name'];
         $imageTmpName2 = $_FILES['image2']['tmp_name'];
-
+    
         $imageExt2 = explode('.', $imageName2);
         $imageActExt2 = strtolower(end($imageExt2));
-        $imageActName2 = uniqid('', true) . "." . $imageActExt2;
-        $target2 = 'images/'. $imageActName2;
-        move_uploaded_file($imageTmpName2, $target2);
-
+    
+        if (in_array($imageActExt2, $allowed)) {
+            $imageActName2 = uniqid('', true) . "." . $imageActExt2;
+            $target2 = 'images/img_exe/'. $imageActName2;
+            move_uploaded_file($imageTmpName2, $target2);
+        }else{
+            $sql_img2 = "SELECT photo2 FROM exercise WHERE id = '$var_value'";
+            $result_img2 = mysqli_query($conn, $sql_img2);
+            $row_img2 = mysqli_fetch_array($result_img2);
+            $imageActName2 = $row_img2['photo2'];
+        }
+    
         //imagem 3
-
         $imageName3 = $_FILES['image3']['name'];
         $imageTmpName3 = $_FILES['image3']['tmp_name'];
-
+    
         $imageExt3 = explode('.', $imageName3);
         $imageActExt3 = strtolower(end($imageExt3));
-        $imageActName3 = uniqid('', true) . "." . $imageActExt3;
-        $target3 = 'images/'. $imageActName3;
-        move_uploaded_file($imageTmpName3, $target3);
+    
+        if (in_array($imageActExt3, $allowed)) {
+            $imageActName3 = uniqid('', true) . "." . $imageActExt3;
+            $target3 = 'images/img_exe/'. $imageActName3;
+            move_uploaded_file($imageTmpName3, $target3);
+        }else{
+            $sql_img3 = "SELECT photo3 FROM exercise WHERE id = '$var_value'";
+            $result_img3 = mysqli_query($conn, $sql_img3);
+            $row_img3 = mysqli_fetch_array($result_img3);
+            $imageActName3 = $row_img3['photo3'];
+        }
+    
 
-        $sql_ie = "INSERT INTO exercise (description, content, photo1, photo2, photo3, active, userCreation, dateCreation) VALUES ('$exename', '$descricao', '$imageActName1', '$imageActName2', '$imageActName3', 1, 'SYSTM', now())";
-        $result_ie = mysqli_query($conn, $sql_ie);
-
-        header("Location: exever.php");
-
+        $sql_eu= "UPDATE exercise SET description = '$exename', content = '$descricao', photo1 = '$imageActName1', photo2 = '$imageActName2', photo3 =  '$imageActName3' WHERE id = '$var_value'";
+        $result_eu = mysqli_query($conn, $sql_eu);
+    
+        header("Location: exever.php")
     break;
 
+    case 5:
+
+        $user = $_SESSION['user'];
+
+        $nome = $_POST['nome'];
+        $apelido = $_POST['apelido'];
+        $email = $_POST['email'];
+        $phone = $_POST['telefone'];
+        $access = $_POST['access'];
+
+        $sql_u = "UPDATE user SET firstName = '$nome', lastName = '$apelido', email='$email', phoneNumber = '$phone', accessId = '$access'";
+        $result_u = mysqli_query($conn, $sql_u);
+
+        header("Location: manageusers.php");
+
+    break;
     
     }
 

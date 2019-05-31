@@ -53,8 +53,8 @@
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
-                <th scope="col">Estado</th>
-                  <th scope="col">Opï¿½ï¿½o</th>
+                  <th scope="col">Estado</th>
+                  <th scope="col">Opção</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,9 +65,9 @@
                       <tr>
                         <td><?php echo $row_exe['description'];?></td>
                         <td><?php echo $row_exe['content'];?></td>
-                        <td><?php echo  "<img src='images/".$row_exe['photo1']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
-                        <td><?php echo  "<img src='images/".$row_exe['photo2']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
-                        <td><?php echo  "<img src='images/".$row_exe['photo3']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
+                        <td><?php echo  "<img src='images/img_exe/".$row_exe['photo1']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
+                        <td><?php echo  "<img src='images/img_exe/".$row_exe['photo2']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
+                        <td><?php echo  "<img src='images/img_exe/".$row_exe['photo3']."'   class='img-fluid rounded' height='200px' width='200px' >";  ?></td>
                         <td><?php
                           if ($row_exe['active'] == 1) {
                             echo "Ativo";
@@ -75,7 +75,7 @@
                             echo "Desativado";
                           }
                         ?></td>
-                        <td><a href="#">Editar</a> </td>
+                        <td><a href="exeedit.php?varname= <?php echo $row_exe['id'] ?> ">Editar</a> </td>
                       </tr>
                 <?php
                     }
