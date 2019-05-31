@@ -50,8 +50,8 @@
               <div class="col-md-5 col-lg-4">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
                 <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Nome Exercicio" name="exenome" value="<?php echo $row_edexe['description'];?>">
-                <label class="sr-only" for="textarea-contacts-02">Descrição</label>
-                <textarea class="form-control mb-3" id="textarea-contacts-02" rows="5" placeholder="Descrição" name="descricao"><?php echo $row_edexe['content'];?></textarea>             
+                <label class="sr-only" for="textarea-contacts-02">DescriÃ§Ã£o</label>
+                <textarea class="form-control mb-3" id="textarea-contacts-02" rows="5" placeholder="DescriÃ§Ã£o" name="descricao"><?php echo $row_edexe['content'];?></textarea>             
                 <input class="btn btn-primary btn-block py-2 my-3" name="image1" type="file">
                 <input class="btn btn-primary btn-block py-2 my-3" name="image2" type="file">
                 <input class="btn btn-primary btn-block py-2 my-3" name="image3" type="file">

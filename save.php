@@ -6,6 +6,7 @@
     include 'email.php';
 
     $s = $_GET[s];
+    echo $s;
 
     switch($s){
 
@@ -122,15 +123,16 @@
 
     break;
 
-    case 4 : //edit exercicio
+    case 4: //edit exercicio
+
         $var_value = $_POST['id_exe'];
         $exename = $_POST['exenome'];
-        $descricao =$_POST['descricao'];
+        $descricao = $_POST['descricao'];
         $image1 = $_FILES['image1'];
         $image2 = $_FILES['image2'];
         $image3 = $_FILES['image3'];
         $allowed = array('jpg','jpeg','png');
-    
+        
         //imagem 1
         $imageName1 = $_FILES['image1']['name'];
         $imageTmpName1 = $_FILES['image1']['tmp_name'];
@@ -140,8 +142,8 @@
     
         if (in_array($imageActExt1, $allowed)) {
             $imageActName1 = uniqid('', true) . "." . $imageActExt1;
-            $target1 = 'images/img_exe/'. $imageActName1;
-            move_uploaded_file($imageTmpName1, $target1);
+            $target = 'images/img_exe/'. $imageActName1;
+            move_uploaded_file($imageTmpName1, $target);
         }else{
             $sql_img1 = "SELECT photo1 FROM exercise WHERE id = '$var_value'";
             $result_img1 = mysqli_query($conn, $sql_img1);
@@ -158,8 +160,8 @@
     
         if (in_array($imageActExt2, $allowed)) {
             $imageActName2 = uniqid('', true) . "." . $imageActExt2;
-            $target2 = 'images/img_exe/'. $imageActName2;
-            move_uploaded_file($imageTmpName2, $target2);
+            $target = 'images/img_exe/'. $imageActName2;
+            move_uploaded_file($imageTmpName2, $target);
         }else{
             $sql_img2 = "SELECT photo2 FROM exercise WHERE id = '$var_value'";
             $result_img2 = mysqli_query($conn, $sql_img2);
@@ -176,8 +178,8 @@
     
         if (in_array($imageActExt3, $allowed)) {
             $imageActName3 = uniqid('', true) . "." . $imageActExt3;
-            $target3 = 'images/img_exe/'. $imageActName3;
-            move_uploaded_file($imageTmpName3, $target3);
+            $target = 'images/img_exe/'. $imageActName3;
+            move_uploaded_file($imageTmpName3, $target);
         }else{
             $sql_img3 = "SELECT photo3 FROM exercise WHERE id = '$var_value'";
             $result_img3 = mysqli_query($conn, $sql_img3);
@@ -188,8 +190,9 @@
 
         $sql_eu= "UPDATE exercise SET description = '$exename', content = '$descricao', photo1 = '$imageActName1', photo2 = '$imageActName2', photo3 =  '$imageActName3' WHERE id = '$var_value'";
         $result_eu = mysqli_query($conn, $sql_eu);
-    
-        header("Location: exever.php")
+   
+        header("Location: exever.php");
+        
     break;
 
     case 5:

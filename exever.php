@@ -49,17 +49,17 @@
               <thead>
                 <tr>
                   <th scope="col">Nome Exercicio</th>
-                  <th scope="col">Descriï¿½ï¿½o</th>
+                  <th scope="col">Descri��o</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Estado</th>
-                  <th scope="col">Opção</th>
+                  <th scope="col">Op��o</th>
                 </tr>
               </thead>
               <tbody>
                <?php 
-                  if(mysqli_num_rows($result_exe) > 0){
+                  if(mysqli_num_rows($result_exe) > -1){
                     while($row_exe = mysqli_fetch_array($result_exe)){
                 ?>
                       <tr>
