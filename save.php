@@ -212,6 +212,35 @@
 
     break;
     
+    case 6: //adicionar plano alimentar
+
+        
+        $userid = $_POST['iduser'];
+        $file = $_FILES['file'];
+        $allowed = array('doc','pdf','docx');
+        
+        
+        $fileName = $_FILES['file']['name'];
+        $fileTmpName = $_FILES['file']['tmp_name'];
+    
+        $fileExt = explode('.', $fileName);
+        $fileActExt = strtolower(end($fileExt));
+    
+        if (in_array($fileActExt, $allowed)) {
+            $fileActName = uniqid('', true) . "." . $fileActExt;
+            $target = 'files/plan_alm/'. $fileActName;
+            move_uploaded_file($fileTmpName, $target);
+        }else{
+            $fileActName = "Null";
+        }
+        $sql_alm = "INSERT INTO nutritionPlan (userUsername, doctorUsername, plan, status, userCreation, dateCreation) VALUES ('$userid', 'SYSTM', '$fileActName', Y, 'SYSTM', now())";
+        $result_alm = mysqli_query($conn, $sql_alm);
+
+        header("Location: landingpage.php");
+
+    break;
+
     }
+    
 
 ?>
