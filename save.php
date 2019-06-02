@@ -236,7 +236,7 @@
         $sql_alm = "INSERT INTO nutritionPlan (userUsername, doctorUsername, plan, status, userCreation, dateCreation) VALUES ('$userid', 'SYSTM', '$fileActName', Y, 'SYSTM', now())";
         $result_alm = mysqli_query($conn, $sql_alm);
 
-        header("Location: landingpage.php");
+        header("Location: index.php");
 
     break;
 

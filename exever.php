@@ -2,6 +2,8 @@
 <html lang="pl">
 <?php
 
+    session_start();
+
     include 'config.inc';
 
     $sql_exe = "SELECT id, description, content, photo1, photo2, photo3, active FROM exercise";

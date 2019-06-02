@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="pl">
 <?php
-
+      session_start();
+      
       $var_value = $_GET['varname'];
       include 'config.inc';
       $sql_edexe = "SELECT description, content, photo1, photo2, photo3, active FROM exercise WHERE id = '$var_value'";
