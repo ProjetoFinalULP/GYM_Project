@@ -214,7 +214,6 @@
     
     case 6: //adicionar plano alimentar
 
-        
         $userid = $_POST['iduser'];
         $file = $_FILES['file'];
         $allowed = array('doc','pdf','docx');
@@ -233,14 +232,67 @@
         }else{
             $fileActName = "Null";
         }
-        $sql_alm = "INSERT INTO nutritionPlan (userUsername, doctorUsername, plan, status, userCreation, dateCreation) VALUES ('$userid', 'SYSTM', '$fileActName', Y, 'SYSTM', now())";
+        $sql_alm = "INSERT INTO nutritionPlan (userUsername, doctorUsername, plan, status, userCreation, dateCreation) 
+            VALUES ('$userid', 'SYSTM', '$fileActName', Y, 'SYSTM', now())";
         $result_alm = mysqli_query($conn, $sql_alm);
 
-        header("Location: index.php");
+        header("Location: landingpage.php");
 
     break;
 
+    case 7;
+        $userid = $_POST['iduser'];
+        $sexo = $_POST['sexo'];
+        $idade = $_POST['idade'];
+        $altura = $_POST['altura'];
+        $peso = $_POST['peso'];
+        $massagordap = $_POST['massagordap'];
+        $massamagrakg = $_POST['massamagrakg'];
+        $idademetabolica = $_POST['idademetabolica'];
+        $aguacorpural = $_POST['aguacorpural'];
+        $cintura = $_POST['cintura'];
+        $anca = $_POST['anca'];
+        $pescoco = $_POST['pescoco'];
+        $ombro = $_POST['ombro'];
+        $torax = $_POST['torax'];
+        $abdomen = $_POST['abdomen'];
+        $bracodireitocontraido = $_POST['bracodireitocontraido'];
+        $bracodireitodescontraido = $_POST['bracodireitodescontraido'];
+        $bracoesquerdocontraido = $_POST['bracoesquerdocontraido'];
+        $bracoesquerdodescontraido = $_POST['bracoesquerdodescontraido'];
+        $antebracoesquerdo = $_POST['antebracoesquerdo'];
+        $antebracodireito = $_POST['antebracodireito'];
+        $coxaesquerda = $_POST['coxaesquerda'];
+        $coxadireira = $_POST['coxadireira'];
+        $gemeoesquerdo = $_POST['gemeoesquerdo'];
+        $gemeodireito = $_POST['gemeodireito'];
+
+        //calcular IMC
+        $a = $altura*$altura;
+        $b = $peso/$a;
+        $imc = round ($b);
+        // calcular incice de cintura anca
+        $ica = round($cintura/$anca);
+        //calcuar massa gorda kg
+        $c = $massagordap*$peso;
+        $massagordakg = round($c/100);
+        //calcuar massa magra %
+        $d = $massamagrakg*100;
+        $massamagrap = round($d/$peso);
+
+
+        $sql_avf = "INSERT INTO physicalEvaluation (userUsername, sex, age, height, weight, trainerUsername, bodyFatPercent, bodyFatValue, leanBodyMassPercent, leanBodyMassValue, metabolicAge, bodyWater, imc, waistHipRatio, waistMeasure, hip, neck, shoulder, chest, abdomen, leftArmRelaxed, rightArmRelaxed, leftArmContracted, rightArmContracted, leftForearm, rightForearm ,leftThigh, rightThigh, leftCalf, rightCalf, status, userCreation, dateCreation) 
+            VALUES ('$userid', '$sexo', '$idade', ' $altura', '$peso', 'SYSTM', ' $massagordap', '$massagordakg', '$massamagrap', '$massamagrakg', '$idademetabolica', '$aguacorpural', '$imc', '$ica', '$cintura', '$anca', '$pescoco', '$ombro', '$torax', '$abdomen', '$bracoesquerdodescontraido', '$bracodireitodescontraido', '$bracoesquerdocontraido', '$bracodireitocontraido', '$antebracoesquerdo', '$antebracodireito', '$coxaesquerda', '$coxadireira ', '$gemeoesquerdo', '$gemeodireito', Y, 'SYSTM', now())";
+        $result_avf = mysqli_query($conn, $sql_avf);
+
+        header("Location: landingpage.php");
+
+
+
+    break;
     }
+
+    
     
 
 ?>

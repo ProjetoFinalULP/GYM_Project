@@ -10,8 +10,11 @@
     <link rel="icon" href="favicon.ico">
   </head>
   <body>
-    <div class="container-fluid">
-                
+  <?php
+ session_start();
+?>
+  
+    <div class="container-fluid">         
     <nav class="navbar navbar-expand-lg navbar-light"><a class="navbar-brand" href="#"><img src="images/49464979_2252961474952750_7513931656697217024_n.jpg" alt="Go Up Fitness" width="35"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigations-04" aria-controls="navigations-04" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navigations-04">
