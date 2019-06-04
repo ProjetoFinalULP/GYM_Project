@@ -9,10 +9,9 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="icon" href="favicon.ico">
   </head>
-  <?php
+<?php
  session_start();
 ?>
-  
   
 
   <body>
@@ -119,3 +118,4 @@
 
 </html>
 
+	

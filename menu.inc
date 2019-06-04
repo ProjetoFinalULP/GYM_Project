@@ -1,5 +1,16 @@
 <?php
 
+    $sql_menu = "SELECT description,
+                        link,
+                        category,
+                        accessId
+                 FROM menu
+                 WHERE active = 'Y'";
+    $result_menu = mysqli_query($conn, $sql_menu);
+
+
+                        
+
     echo "<nav class='navbar navbar-expand-lg navbar-light'><a class='navbar-brand' href='#'><img src='images/49464979_2252961474952750_7513931656697217024_n.jpg' alt='Go Up Fitness' width='35'></a>";
         echo "<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navigations-04' aria-controls='navigations-04' aria-expanded='false' aria-label='Toggle navigation'><span class='navbar-toggler-icon'></span></button>";
         echo "<div class='collapse navbar-collapse' id='navigations-04'>";
@@ -7,17 +18,28 @@
         echo "<ul class='navbar-nav order-2 order-lg-1'>";
             echo "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='#' data-toggle='dropdown'>Planos</a>";
             echo "<div class='dropdown-menu'>";
-                echo "<a class='dropdown-item' href='exever.php'>Gerir Exercicios</a>";
+                echo "<a class='dropdown-item' href='createplanalim.php'>Criar Plano Alimentar</a>";
             echo "</div>";
+
+            echo "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='#' data-toggle='dropdown'>Avaliações</a>";
+            echo "<div class='dropdown-menu'>";
+                echo "<a class='dropdown-item' href='createavalfisica.php'>Criar Avaliação Física</a>";
+            echo "</div>";
+
             echo "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='#' data-toggle='dropdown'>Aulas</a>";
             echo "<div class='dropdown-menu'>";
-                echo "<a class='dropdown-item' href='#'>Gerir Aulas de Grupo</a>"; 
+                 
             echo "</div>";
+
             echo "<li class='nav-item dropdown'><a class='nav-link dropdown-toggle' href='#' data-toggle='dropdown'>Administração</a>";
             echo "<div class='dropdown-menu'>";
-                echo "<a class='dropdown-item' href='manageusers.php'>Gerir Utilizador</a>";
-                echo "<a class='dropdown-item' href='#'>Gerir Calendario de Avaliação</a>";
-                            
+                if(mysqli_num_rows($result_menu) > 0){
+                    while($row_m4 = mysqli_fetch_array($result_menu)){
+                        if($row_m4['category'] == 4){
+                            echo "<a class='dropdown-item' href=" . $row_m4['link'] . ">" . $row_m4['description'] . "</a>";
+                        }
+                    }
+                }    
             echo "</div>";
             echo "</li>";
         echo "</ul>";

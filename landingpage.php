@@ -2,7 +2,7 @@
 <html lang="pl">
   <head>
     <title>Page title</title>
-    <meta charset="utf-8">
+    <meta charset="ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -54,7 +54,7 @@
       <?php
 
         include 'menu.inc';
-        
+
       ?>
                 
       <section class="py-4">

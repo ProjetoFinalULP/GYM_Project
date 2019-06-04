@@ -19,9 +19,7 @@ if($checkpass == $row['pass']){
     header("Location: landingpage.php");
 }else{
 
-    echo "NÃO TENS ACESSO!";
-    sleep(5);
-    header("Location: index.php");
+    header("Location: error.php");
 }
 
 ?>

@@ -1,7 +1,7 @@
 <?php
 
     session_start();
-
+    
     include 'config.inc';
     include 'email.php';
 
@@ -18,7 +18,21 @@
         $phone = $_POST['telefone'];
 
 
-        $username = strtoupper(substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 5)), 0, 5));
+        do{
+            $username = strtoupper(substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 5)), 0, 5));
+
+            $sql_repeat = "SELECT username
+                           FROM user
+                           WHERE username = '$username'";
+            $result_repeat = mysqli_query($conn, $sql_repeat);
+
+            if(mysqli_num_rows($result_repeat) > 0){
+                $flag = 1;
+            }else{
+                $flag = 0;
+            }
+        }while($flag = 1);
+
 
         $rndmpass = strtoupper(substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 8)), 0, 8));
 
@@ -63,7 +77,7 @@
     break;
 
     case 3: //adiciona e exercicios
-
+        $userLogedIn = $_SESSION['user'];
         $exename = $_POST['exenome'];
         $descricao = $_POST['descricao'];
         $image1 = $_FILES['image1'];
@@ -116,7 +130,7 @@
             $imageActName3 = "NULL3";
         }
     
-        $sql_e = "INSERT INTO exercise (description, content, photo1, photo2, photo3, active, userCreation, dateCreation) VALUES ('$exename', '$descricao', '$imageActName1', '$imageActName2', '$imageActName3', 1, 'SYSTM', now())";
+        $sql_e = "INSERT INTO exercise (description, content, photo1, photo2, photo3, active, userCreation, dateCreation) VALUES ('$exename', '$descricao', '$imageActName1', '$imageActName2', '$imageActName3', 1, '$userLogedIn', now())";
         $result_e = mysqli_query($conn, $sql_e);
     
         header("Location: exever.php");
@@ -124,7 +138,7 @@
     break;
 
     case 4: //edit exercicio
-
+        
         $var_value = $_POST['id_exe'];
         $exename = $_POST['exenome'];
         $descricao = $_POST['descricao'];
@@ -213,7 +227,7 @@
     break;
     
     case 6: //adicionar plano alimentar
-
+        $userLogedIn = $_SESSION['user'];
         $userid = $_POST['iduser'];
         $file = $_FILES['file'];
         $allowed = array('doc','pdf','docx');
@@ -232,8 +246,12 @@
         }else{
             $fileActName = "Null";
         }
-        $sql_alm = "INSERT INTO nutritionPlan (userUsername, doctorUsername, plan, status, userCreation, dateCreation) 
-            VALUES ('$userid', 'SYSTM', '$fileActName', Y, 'SYSTM', now())";
+        
+        
+        $sql_uppalm="UPDATE nutritionPlan SET status = 'N' WHERE userUsername = '$userLogedIn'";
+        $result_uppalm = mysqli_query($conn, $sql_uppalm);
+        
+        $sql_alm = "INSERT INTO nutritionPlan (userUsername, doctorUsername, plan, status, userCreation, dateCreation) VALUES ('$userid', '$userLogedIn', '$fileActName', 'Y', '$userLogedIn', now())";
         $result_alm = mysqli_query($conn, $sql_alm);
 
         header("Location: landingpage.php");
@@ -241,6 +259,7 @@
     break;
 
     case 7;
+        $userLogedIn = $_SESSION['user'];
         $userid = $_POST['iduser'];
         $sexo = $_POST['sexo'];
         $idade = $_POST['idade'];
@@ -282,7 +301,7 @@
 
 
         $sql_avf = "INSERT INTO physicalEvaluation (userUsername, sex, age, height, weight, trainerUsername, bodyFatPercent, bodyFatValue, leanBodyMassPercent, leanBodyMassValue, metabolicAge, bodyWater, imc, waistHipRatio, waistMeasure, hip, neck, shoulder, chest, abdomen, leftArmRelaxed, rightArmRelaxed, leftArmContracted, rightArmContracted, leftForearm, rightForearm ,leftThigh, rightThigh, leftCalf, rightCalf, status, userCreation, dateCreation) 
-            VALUES ('$userid', '$sexo', '$idade', ' $altura', '$peso', 'SYSTM', ' $massagordap', '$massagordakg', '$massamagrap', '$massamagrakg', '$idademetabolica', '$aguacorpural', '$imc', '$ica', '$cintura', '$anca', '$pescoco', '$ombro', '$torax', '$abdomen', '$bracoesquerdodescontraido', '$bracodireitodescontraido', '$bracoesquerdocontraido', '$bracodireitocontraido', '$antebracoesquerdo', '$antebracodireito', '$coxaesquerda', '$coxadireira ', '$gemeoesquerdo', '$gemeodireito', Y, 'SYSTM', now())";
+            VALUES ('$userid', '$sexo', '$idade', ' $altura', '$peso', ' $userLogedIn', ' $massagordap', '$massagordakg', '$massamagrap', '$massamagrakg', '$idademetabolica', '$aguacorpural', '$imc', '$ica', '$cintura', '$anca', '$pescoco', '$ombro', '$torax', '$abdomen', '$bracoesquerdodescontraido', '$bracodireitodescontraido', '$bracoesquerdocontraido', '$bracodireitocontraido', '$antebracoesquerdo', '$antebracodireito', '$coxaesquerda', '$coxadireira ', '$gemeoesquerdo', '$gemeodireito', 'Y', ' $userLogedIn', now())";
         $result_avf = mysqli_query($conn, $sql_avf);
 
         header("Location: landingpage.php");
@@ -290,6 +309,7 @@
 
 
     break;
+
     }
 
     
