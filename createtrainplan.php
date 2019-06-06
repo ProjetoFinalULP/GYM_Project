@@ -42,17 +42,18 @@
       </nav>
                 
       <section>
-        <form method="post" name="createexe" enctype="multipart/form-data">
+        <form method="post" name="createexe" action="createtrainday.php">
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-5 col-lg-4">
                 <label class="sr-only" for="input1-signin-03">ID Utilizador</label>
                 <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="ID Utilizador" name="iduser">                                     
-                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=8">Create New Plan</button>
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=8">Criar Novo Plano</button>
+                <button class="btn btn-primary btn-block py-2 my-3" type="submit" name="procurar">Procurar</button>
               </div>
             </div>
           </div>
-          </form>
+        </form>
       </section>
     </div>
     <script src="js/jquery/jquery.min.js"></script>

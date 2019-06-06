@@ -15,7 +15,15 @@
   <?php
     session_start(); 
     include 'config.inc';
+    
+  if(isset($_POST['procurar'])){
+    $iduser = $_POST['iduser'];
+      
+
+      
+  }else{
     $iduser = $_GET[iduser];
+  }
    
     $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$iduser' AND active='Y'";
     $result_sele = mysqli_query($conn, $sql_sele);
