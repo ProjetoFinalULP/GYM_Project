@@ -16,19 +16,20 @@
     session_start(); 
     include 'config.inc';
     $iduser = $_GET[iduser];
-    
+   
     $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$iduser' AND active='Y'";
     $result_sele = mysqli_query($conn, $sql_sele);
     $row_sele = mysqli_fetch_array($result_sele);
-    $idDay = $row_sele['id'];
+    $idPlan = $row_sele['id'];
 
-    $sql_sel = "SELECT id, dayName FROM planDay WHERE trainPlanId = '$idDay'";
+    $sql_sel = "SELECT id, dayName FROM planDay WHERE trainPlanId = '$idPlan'";
     $result_sel = mysqli_query($conn, $sql_sel);
     $row_sel = mysqli_fetch_array($result_sel);
+  
   ?>
     <div class="container-fluid">
                 
-    <nav class="navbar navbar-expand-lg navbar-light"><a class="navbar-brand" href="#"><img src="images/49464979_2252961474952750_7513931656697217024_n.jpg" alt="Go Up Fitness" width="35"></a>
+      <nav class="navbar navbar-expand-lg navbar-light"><a class="navbar-brand" href="#"><img src="images/49464979_2252961474952750_7513931656697217024_n.jpg" alt="Go Up Fitness" width="35"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigations-04" aria-controls="navigations-04" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navigations-04">
           <div class="d-flex flex-column flex-lg-row align-items-start justify-content-between w-100">
@@ -59,18 +60,20 @@
             <div class="row justify-content-center">
               <div class="col-md-5 col-lg-4">
                 <?php 
+                
                   if(mysqli_num_rows($result_sel) > 0){
                     while($row_sel = mysqli_fetch_array($result_sel)){
                       ?>
-                        <a class="btn btn-primary btn-block py-2 my-3" href="createtrainexe.php?id=<?php echo $row_sel['id'];?>&iduser=<?php echo $iduser ?>"><?php echo $row_sel['dayName'];?></a>
+                        <a class="btn btn-primary btn-block py-2 my-3" href="createtrainexe.php?idDay=<?php echo $row_sel['id'];?>&iduser=<?php echo $iduser ?>"><?php echo $row_sel['dayName'];?></a>
                       <?php
                       
                     }
                   }
+                  
                 ?>
                 <label class="sr-only" for="input1-signin-03">Grupo Muscular</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Grupo Muscular" name="criardia">                                     
-                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=9" name="iduser" value="<?php echo $iduser ?>">Criar</button>
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Grupo Muscular" name="criarmusc">                                     
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=9&iduser=<?php echo $iduser ?>">Criar</button>
               </div>
             </div>
           </div>

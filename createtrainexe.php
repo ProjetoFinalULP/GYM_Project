@@ -5,7 +5,7 @@
     session_start();
 
     include 'config.inc';
-    $idDay = $_GET[id];
+    $idDay = $_GET[idDay];
     $iduser = $_GET[iduser];
 
     $sql_exe = "SELECT id, exerciseId, numSets, numReps, exeName FROM planExercise WHERE trainingDayId ='$idDay' AND active='Y' "; 

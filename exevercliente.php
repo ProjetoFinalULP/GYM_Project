@@ -38,7 +38,7 @@
               <thead>
                 <tr>
                   <th scope="col">Nome Exercicio</th>
-                  <th scope="col">Descri��o</th>
+                  <th scope="col">Descrição</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
                   <th scope="col">Imagem</th>
@@ -65,7 +65,7 @@
           </div>
         </div>
       </section>
-      <a class="btn btn-primary btn-block py-2 my-3" href="createtrainexe.php?id=<?php echo $idDay ?>&iduser=<?php echo $iduser ?> ">Voltar</a>
+      <a class="btn btn-primary btn-block py-2 my-3" href="createtrainexe.php?idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?> ">Voltar</a>
 
       
     </div>

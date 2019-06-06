@@ -323,8 +323,8 @@
 
     case 9: // cirar plano dia
         $userLogedIn = $_SESSION['user'];
-        $iduser = $_POST['iduser'];
-        $dia = $_POST['criardia'];
+        $iduser = $_GET[iduser];
+        $musc = $_POST['criarmusc'];
         
         $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$iduser' AND active='Y'";
         $result_sele = mysqli_query($conn, $sql_sele);
@@ -332,7 +332,7 @@
         $idPlan = $row_sele['id'];
 
 
-        $sql_insert = "INSERT INTO planDay (trainPlanId, userUsername, active, userCreation, dateCreation, dayName) VALUES ('$idPlan', '$iduser', 'Y', '$userLogedIn', now(), '$dia')";
+        $sql_insert = "INSERT INTO planDay (trainPlanId, userUsername, active, userCreation, dateCreation, dayName) VALUES ('$idPlan', '$iduser', 'Y', '$userLogedIn', now(), '$musc')";
         $result_insert = mysqli_query($conn, $sql_insert);
 
 
@@ -356,11 +356,11 @@
         $row_exe = mysqli_fetch_array($result_exe);
         $idExe = $row_exe['id'];
 
-        $sql_insert = "INSERT INTO planExercise (trainingDayId, exerciseId, numSets, numReps, actiive, userCreation, dateCreation, exeName) 
+        $sql_insert = "INSERT INTO planExercise (trainingDayId, exerciseId, numSets, numReps, active, userCreation, dateCreation, exeName) 
                         VALUES ('$idDay', '$idExe', '$sets', '$reps', 'Y', '$userLogedIn',now(), '$exe')";
         $result_insert = mysqli_query($conn, $sql_insert);
 
-        header("Location: createtrainexe.php?iduser=$iduser&id=$idDay");
+        header("Location: createtrainexe.php?iduser=$iduser&idDay=$idDay");
 
     break;
 
@@ -369,10 +369,10 @@
         $iduser = $_GET[iduser];
         $varname = $_GET[varname];
 
-        $sql_update="UPDATE planExercise SET actiive = 'N' WHERE id = '$varname'";
+        $sql_update="UPDATE planExercise SET active = 'N' WHERE id = '$varname'";
         $result_update = mysqli_query($conn, $sql_update);
 
-        header("Location: createtrainexe.php?iduser=$iduser&id=$idDay");
+        header("Location: createtrainexe.php?iduser=$iduser&idDay=$idDay");
 
     break;
 
