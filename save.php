@@ -6,12 +6,12 @@
     include 'email.php';
 
     $s = $_GET[s];
-    echo $s;
+    
 
     switch($s){
 
     case 1: //gera utilizador e password e envia dados por email
-
+        $user = $_SESSION['user'];
         $name1 = $_POST['nome'];
         $name2 = $_POST['apelido'];
         $email = $_POST['email'];
@@ -31,7 +31,7 @@
             }else{
                 $flag = 0;
             }
-        }while($flag = 1);
+        }while($flag == 1);
 
 
         $rndmpass = strtoupper(substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 8)), 0, 8));
@@ -43,7 +43,7 @@
                                 VALUES ('$username', '$name1', '$name2', '$phone', '$email', 1, 'SYSTM', now())";
         $result_i = mysqli_query($conn, $sql_i);
 
-        $sql_login = "INSERT INTO login (userUsername, pass, userCreation, dateCreation) VALUES ('$username', '$password', 'SYSTM', now())";
+        $sql_login = "INSERT INTO login (userUsername, pass, userCreation, dateCreation) VALUES ('$username', '$password', '$user', now())";
         $result_login = mysqli_query($conn, $sql_login);
 
         $enviarMail = new emailSend($name1, $name2, $email, $rndmpass, $username);
@@ -76,7 +76,7 @@
 
     break;
 
-    case 3: //adiciona e exercicios
+    case 3: //adiciona
         $userLogedIn = $_SESSION['user'];
         $exename = $_POST['exenome'];
         $descricao = $_POST['descricao'];
@@ -138,7 +138,7 @@
     break;
 
     case 4: //edit exercicio
-        
+
         $var_value = $_POST['id_exe'];
         $exename = $_POST['exenome'];
         $descricao = $_POST['descricao'];
@@ -230,7 +230,7 @@
         $userLogedIn = $_SESSION['user'];
         $userid = $_POST['iduser'];
         $file = $_FILES['file'];
-        $allowed = array('doc','pdf','docx');
+        $allowed = array('pdf');
         
         
         $fileName = $_FILES['file']['name'];
@@ -246,11 +246,9 @@
         }else{
             $fileActName = "Null";
         }
-        
-        
-        $sql_uppalm="UPDATE nutritionPlan SET status = 'N' WHERE userUsername = '$userLogedIn'";
+        $sql_uppalm="UPDATE nutritionPlan SET status = 'N' WHERE userUsername = '$userid' AND status='Y'";
         $result_uppalm = mysqli_query($conn, $sql_uppalm);
-        
+
         $sql_alm = "INSERT INTO nutritionPlan (userUsername, doctorUsername, plan, status, userCreation, dateCreation) VALUES ('$userid', '$userLogedIn', '$fileActName', 'Y', '$userLogedIn', now())";
         $result_alm = mysqli_query($conn, $sql_alm);
 
@@ -258,7 +256,7 @@
 
     break;
 
-    case 7;
+    case 7: //criar avaliação
         $userLogedIn = $_SESSION['user'];
         $userid = $_POST['iduser'];
         $sexo = $_POST['sexo'];
@@ -310,9 +308,81 @@
 
     break;
 
+    case 8: // criarplanofisica
+        $userLogedIn = $_SESSION['user'];
+        $userid = $_POST['iduser'];
+
+        $sql_update="UPDATE trainingPlan SET active = 'N' WHERE userUsername = '$userid' AND active='Y'";
+        $result_update = mysqli_query($conn, $sql_update);
+
+        $sql_insert = "INSERT INTO trainingPlan (userUsername, active, userCreation, dateCreation) VALUES ('$userid', 'Y', '$userLogedIn', now())";
+        $result_insert = mysqli_query($conn, $sql_insert);
+        
+        header("Location: createtrainday.php?user=$userid");
+    break;
+
+    case 9: // cirar plano dia
+        $userLogedIn = $_SESSION['user'];
+        $userid = $_POST['id_user'];
+        $dia = $_POST['criardia'];
+        
+        $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$userid' AND active='Y'";
+        $result_sele = mysqli_query($conn, $sql_sele);
+        $row_sele = mysqli_fetch_array($result_sele);
+        $idPlan = $row_sele['id'];
+
+
+        $sql_insert = "INSERT INTO planDay (trainPlanId, userUsername, active, userCreation, dateCreation, dayName) VALUES ('$idPlan', '$userid', 'Y', '$userLogedIn', now(), '$dia')";
+        $result_insert = mysqli_query($conn, $sql_insert);
+
+
+
+
+        header("Location: createtrainday.php?user=$userid");
+
+    break;
+
+    case 10: //criar exercicios
+        $userLogedIn = $_SESSION['user'];
+        $exe = $_POST['exercicio'];
+        $sets = $_POST['set'];
+        $reps = $_POST['reps'];
+        $idDay = $_GET[idDay];
+        $user = $_GET[user];
+
+
+        $sql_exe = "SELECT id FROM exercise WHERE description = '$exe'";
+        $result_exe = mysqli_query($conn, $sql_exe);
+        $row_exe = mysqli_fetch_array($result_exe);
+        $idExe = $row_exe['id'];
+
+        $sql_insert = "INSERT INTO planExercise (trainingDayId, exerciseId, numSets, numReps, actiive, userCreation, dateCreation, exeName) 
+                        VALUES ('$idDay', '$idExe', '$sets', '$reps', 'Y', '$userLogedIn',now(), '$exe')";
+        $result_insert = mysqli_query($conn, $sql_insert);
+
+        header("Location: createtrainexe.php?user=$user&id=$idDay");
+
+    break;
+
+    case 11: // apagar ex dia
+        $idDay = $_GET[idDay];
+        $user = $_GET[user];
+        $varname = $_GET[varname];
+
+        $sql_update="UPDATE planExercise SET actiive = 'N' WHERE id = '$varname'";
+        $result_update = mysqli_query($conn, $sql_update);
+
+        header("Location: createtrainexe.php?user=$user&id=$idDay");
+
+    break;
+
+
+
+
+
+
+
+
+
     }
-
-    
-    
-
 ?>

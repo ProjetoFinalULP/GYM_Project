@@ -19,6 +19,7 @@
   if(isset($_SESSION['user'])){
   
     $user = $_SESSION['user'];
+    $access = $_SESSION['access'];
 
     $sql_u = "SELECT firstName,
                       lastName
@@ -38,13 +39,13 @@
                 WHERE active = 'Y'";
     $result_user = mysqli_query($conn, $sql_user);
 
-
-    $sql_u = "SELECT firstName,
-                        lastName
-                FROM user
-                WHERE username = '$user'";
-    $result_u = mysqli_query($conn, $sql_u);
-    $row_u = mysqli_fetch_array($result_u);
+    $sql_menu = "SELECT description,
+                        link,
+                        category,
+                        accessId
+                 FROM menu
+                 WHERE active = 'Y'";
+    $result_menu = mysqli_query($conn, $sql_menu);
 
 ?>
 
