@@ -15,9 +15,9 @@
   <?php
     session_start(); 
     include 'config.inc';
-    $user = $_GET[user];
+    $iduser = $_GET[iduser];
     
-    $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$user' AND active='Y'";
+    $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$iduser' AND active='Y'";
     $result_sele = mysqli_query($conn, $sql_sele);
     $row_sele = mysqli_fetch_array($result_sele);
     $idDay = $row_sele['id'];
@@ -62,7 +62,7 @@
                   if(mysqli_num_rows($result_sel) > 0){
                     while($row_sel = mysqli_fetch_array($result_sel)){
                       ?>
-                        <a class="btn btn-primary btn-block py-2 my-3" href="createtrainexe.php?id=<?php echo $row_sel['id'];?>&user=<?php echo $user ?>"><?php echo $row_sel['dayName'];?></a>
+                        <a class="btn btn-primary btn-block py-2 my-3" href="createtrainexe.php?id=<?php echo $row_sel['id'];?>&iduser=<?php echo $iduser ?>"><?php echo $row_sel['dayName'];?></a>
                       <?php
                       
                     }
@@ -70,7 +70,7 @@
                 ?>
                 <label class="sr-only" for="input1-signin-03">Grupo Muscular</label>
                 <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Grupo Muscular" name="criardia">                                     
-                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=9" name="id_user" value="<?php echo $user ?>">Criar</button>
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=9" name="iduser" value="<?php echo $iduser ?>">Criar</button>
               </div>
             </div>
           </div>

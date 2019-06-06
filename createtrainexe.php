@@ -6,7 +6,7 @@
 
     include 'config.inc';
     $idDay = $_GET[id];
-    $user = $_GET[user];
+    $iduser = $_GET[iduser];
 
     $sql_exe = "SELECT id, exerciseId, numSets, numReps, exeName FROM planExercise WHERE trainingDayId ='$idDay' AND active='Y' "; 
     $result_exe = mysqli_query($conn, $sql_exe);
@@ -70,10 +70,10 @@
                     while($row_exe = mysqli_fetch_array($result_exe)){
                 ?>
                       <tr>
-                        <td><a href="exevercliente.php?idDay=<?php echo $idDay ?>&user=<?php echo $user ?>&varname=<?php echo $row_exe['exerciseId']; ?> "><?php echo $row_exe['exeName'];?></a></td>
+                        <td><a href="exevercliente.php?idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?>&varname=<?php echo $row_exe['exerciseId']; ?> "><?php echo $row_exe['exeName'];?></a></td>
                         <td><?php echo $row_exe['numSets'];?></td>
                         <td><?php echo $row_exe['numReps'];?></td>
-                        <td><a href="save.php?s=11&varname= <?php echo $row_exe['id']; ?>&idDay=<?php echo $idDay ?>&user=<?php echo $user ?> ">Eleminar</a> </td>
+                        <td><a href="save.php?s=11&varname= <?php echo $row_exe['id']; ?>&idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?> ">Eleminar</a> </td>
                       </tr>
                 <?php
                     }
@@ -96,8 +96,8 @@
                 <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Exercicio" name="exercicio">
                 <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Set" name="set"> 
                 <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Reps" name="reps">                                      
-                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=10&idDay=<?php echo $idDay ?>&user=<?php echo $user ?>">Adicionar</button>
-                <a class="btn btn-primary btn-block py-2 my-3" href="createtrainday.php?user=<?php echo $user ?>">Voltar</a>
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=10&idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?>">Adicionar</button>
+                <a class="btn btn-primary btn-block py-2 my-3" href="createtrainday.php?iduser=<?php echo $iduser ?>">Voltar</a>
               </div>
             </div>
           </div>

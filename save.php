@@ -310,35 +310,35 @@
 
     case 8: // criarplanofisica
         $userLogedIn = $_SESSION['user'];
-        $userid = $_POST['iduser'];
+        $iduser = $_POST['iduser'];
 
-        $sql_update="UPDATE trainingPlan SET active = 'N' WHERE userUsername = '$userid' AND active='Y'";
+        $sql_update="UPDATE trainingPlan SET active = 'N' WHERE userUsername = '$iduser' AND active='Y'";
         $result_update = mysqli_query($conn, $sql_update);
 
-        $sql_insert = "INSERT INTO trainingPlan (userUsername, active, userCreation, dateCreation) VALUES ('$userid', 'Y', '$userLogedIn', now())";
+        $sql_insert = "INSERT INTO trainingPlan (userUsername, active, userCreation, dateCreation) VALUES ('$iduser', 'Y', '$userLogedIn', now())";
         $result_insert = mysqli_query($conn, $sql_insert);
         
-        header("Location: createtrainday.php?user=$userid");
+        header("Location: createtrainday.php?iduser=$iduser");
     break;
 
     case 9: // cirar plano dia
         $userLogedIn = $_SESSION['user'];
-        $userid = $_POST['id_user'];
+        $iduser = $_POST['iduser'];
         $dia = $_POST['criardia'];
         
-        $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$userid' AND active='Y'";
+        $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$iduser' AND active='Y'";
         $result_sele = mysqli_query($conn, $sql_sele);
         $row_sele = mysqli_fetch_array($result_sele);
         $idPlan = $row_sele['id'];
 
 
-        $sql_insert = "INSERT INTO planDay (trainPlanId, userUsername, active, userCreation, dateCreation, dayName) VALUES ('$idPlan', '$userid', 'Y', '$userLogedIn', now(), '$dia')";
+        $sql_insert = "INSERT INTO planDay (trainPlanId, userUsername, active, userCreation, dateCreation, dayName) VALUES ('$idPlan', '$iduser', 'Y', '$userLogedIn', now(), '$dia')";
         $result_insert = mysqli_query($conn, $sql_insert);
 
 
 
 
-        header("Location: createtrainday.php?user=$userid");
+        header("Location: createtrainday.php?iduser=$iduser");
 
     break;
 
@@ -348,7 +348,7 @@
         $sets = $_POST['set'];
         $reps = $_POST['reps'];
         $idDay = $_GET[idDay];
-        $user = $_GET[user];
+        $iduser = $_GET[iduser];
 
 
         $sql_exe = "SELECT id FROM exercise WHERE description = '$exe'";
@@ -360,19 +360,19 @@
                         VALUES ('$idDay', '$idExe', '$sets', '$reps', 'Y', '$userLogedIn',now(), '$exe')";
         $result_insert = mysqli_query($conn, $sql_insert);
 
-        header("Location: createtrainexe.php?user=$user&id=$idDay");
+        header("Location: createtrainexe.php?iduser=$iduser&id=$idDay");
 
     break;
 
     case 11: // apagar ex dia
         $idDay = $_GET[idDay];
-        $user = $_GET[user];
+        $iduser = $_GET[iduser];
         $varname = $_GET[varname];
 
         $sql_update="UPDATE planExercise SET actiive = 'N' WHERE id = '$varname'";
         $result_update = mysqli_query($conn, $sql_update);
 
-        header("Location: createtrainexe.php?user=$user&id=$idDay");
+        header("Location: createtrainexe.php?iduser=$iduser&id=$idDay");
 
     break;
 
