@@ -48,7 +48,7 @@
                     while($row_exe = mysqli_fetch_array($result_exe)){
                 ?>
                       <tr>
-                        <td><a href="exevercliente.php?idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?>&varname=<?php echo $row_exe['exerciseId']; ?> "><?php echo $row_exe['exeName'];?></a></td>
+                        <td><a href="verexe.php?idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?>&varname=<?php echo $row_exe['exerciseId']; ?> "><?php echo $row_exe['exeName'];?></a></td>
                         <td><?php echo $row_exe['numSets'];?></td>
                         <td><?php echo $row_exe['numReps'];?></td>
                       </tr>

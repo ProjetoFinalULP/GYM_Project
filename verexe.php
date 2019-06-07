@@ -65,7 +65,7 @@
           </div>
         </div>
       </section>
-      <a class="btn btn-primary btn-block py-2 my-3" href="createtrainexe.php?idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?> ">Voltar</a>
+      <a class="btn btn-primary btn-block py-2 my-3" href="verplanexe.php?idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?> ">Voltar</a>
 
       
     </div>
