@@ -323,7 +323,7 @@
 
     case 9: // cirar plano dia
         $userLogedIn = $_SESSION['user'];
-        $iduser = $_GET[iduser];
+        $iduser = $_GET['iduser'];
         $musc = $_POST['criarmusc'];
         
         $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$iduser' AND active='Y'";
@@ -347,8 +347,8 @@
         $exe = $_POST['exercicio'];
         $sets = $_POST['set'];
         $reps = $_POST['reps'];
-        $idDay = $_GET[idDay];
-        $iduser = $_GET[iduser];
+        $idDay = $_GET['idDay'];
+        $iduser = $_GET['iduser'];
 
 
         $sql_exe = "SELECT id FROM exercise WHERE description = '$exe'";
@@ -365,9 +365,9 @@
     break;
 
     case 11: // apagar ex dia
-        $idDay = $_GET[idDay];
-        $iduser = $_GET[iduser];
-        $varname = $_GET[varname];
+        $idDay = $_GET['idDay'];
+        $iduser = $_GET['iduser'];
+        $varname = $_GET['varname'];
 
         $sql_update="UPDATE planExercise SET active = 'N' WHERE id = '$varname'";
         $result_update = mysqli_query($conn, $sql_update);
@@ -376,6 +376,31 @@
 
     break;
 
+    case 12:
+
+        $user = $_SESSION['user'];
+        $nome = $_POST['nome'];
+        $capacidade = $_POST['capacidade'];
+
+        $sql_i = "INSERT INTO classroom (description, capacity, userCreation, dateCreation)
+                                VALUES ('$nome', '$capacidade', '$user', now())";
+        $result_i = mysqli_query($conn, $sql_i);
+
+        header("Location: salas.php");
+
+    break;
+
+    case 13:
+
+        $user = $_SESSION['user'];
+        $roomId = $_GET['id'];
+
+        $sql_d = "UPDATE classroom SET active = 'N' WHERE id = '$roomId'";
+        $result_d = mysqli_query($conn, $sql_d);
+        
+        header("Location: salas.php");
+
+    break;
 
 
 

@@ -1,5 +1,7 @@
 <?php
 
+    $access = $_SESSION['access'];
+
     $sql_menu1 = "SELECT description,
                         link,
                         accessId
@@ -31,6 +33,13 @@
                  WHERE category = 4
                  AND active = 'Y'";
     $result_menu4 = mysqli_query($conn, $sql_menu4);
+
+    $sql_u = "SELECT firstName,
+                      lastName
+              FROM user
+              WHERE username = '$user'";
+    $result_u = mysqli_query($conn, $sql_u);
+    $row_u = mysqli_fetch_array($result_u);
 
     switch($access){
 

@@ -53,6 +53,10 @@
 
   <body>
     <div class="container-fluid">
+
+    <?php
+      include 'menu.inc';
+    ?>
                 
       <section class="py-5">
         <div class="container">

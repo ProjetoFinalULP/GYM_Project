@@ -7,51 +7,65 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-    <link rel="icon" href="favicon.ico">      
-  </head>
-  <body>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script>
-    google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawBasic);
+    <link rel="icon" href="favicon.ico">  
 
-function drawBasic() {
+    <?php 
+     
+      session_start();
+      include 'config.inc';
 
-      var data = google.visualization.arrayToDataTable([
-        <?php
-        include 'config.inc';
-        session_start();
-        $user = $_SESSION['user'];
-        $sql_af = "SELECT weight, dateCreation 
-          FROM physicalEvaluation 
-          WHERE userUsername = '$user' ";
-          $result_af = mysqli_query($conn, $sql_af);
-          while ($row_af = mysqli_fetch_array($result_af)){
-            echo "['".$row_af['dateCreation']."',".$row_af['weight']."],";
-          }
-        ?>
-      ]);
+      $user = $_SESSION['user'];
+      
+    ?>
 
-      var options = {
-        title: 'Population of Largest U.S. Cities',
-        chartArea: {width: '50%'},
-        hAxis: {
-          title: 'Total Population',
-          minValue: 0
-        },
-        vAxis: {
-          title: 'City'
-        }
-      };
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      function drawChart() {
 
-      chart.draw(data, options);
-    }
+        var jsonData = $.ajax({
+          url:"getData.php",
+          dataType: "json",
+          async: false
+        }).responseText;
+        
+        var data = new google.visualization.DataTable(jsonData);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom'}
+        };
+       
+        //var chart = new google.charts.Line(document.getElementById('chart_div'));
+        var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+        //chart.draw(data, google.charts.Line.convertOptions(options));
+      }
     
     </script>
+
+
+
+  </head>
+  
+  
+  
+  <body>
+
+    <div class="container-fluid">
+      <?php
+        include 'menu.inc';
+      ?>
+  
     
-  <div id="chart_div"></div>
+      <div id="chart_div" style="width: 900px; height: 500px;"></div>
+    </div>
+
+  
     <script src="js/jquery/jquery.min.js"></script>
     <script src="js/popper/popper.min.js"></script>
     <script src="js/bootstrap/bootstrap.min.js"></script>
@@ -61,6 +75,6 @@ function drawBasic() {
 
 
 
+<!--https://jsfiddle.net/api/post/library/pure/
 https://jsfiddle.net/api/post/library/pure/
-https://jsfiddle.net/api/post/library/pure/
-http://www.techjunkgigs.com/google-charts-in-php-with-mysql-database-using-google-api/
+http://www.techjunkgigs.com/google-charts-in-php-with-mysql-database-using-google-api/-->
