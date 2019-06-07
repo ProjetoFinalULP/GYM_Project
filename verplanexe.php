@@ -39,7 +39,6 @@
                   <th scope="col">Nome Exercicio</th>
                   <th scope="col">Sets</th>
                   <th scope="col">Reps</th>
-                  <th scope="col">Opção</th>
                 </tr>
               </thead>
               <tbody>
