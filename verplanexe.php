@@ -48,10 +48,9 @@
                     while($row_exe = mysqli_fetch_array($result_exe)){
                 ?>
                       <tr>
-                        <td><?php echo $row_exe['exeName'];?></td>
+                        <td><a href="exevercliente.php?idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?>&varname=<?php echo $row_exe['exerciseId']; ?> "><?php echo $row_exe['exeName'];?></a></td>
                         <td><?php echo $row_exe['numSets'];?></td>
                         <td><?php echo $row_exe['numReps'];?></td>
-                        <td><a href="save.php?s=11&varname= <?php echo $row_exe['id']; ?>&idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?> ">Eleminar</a> </td>
                       </tr>
                 <?php
                     }
@@ -71,11 +70,7 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-5 col-lg-4">
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Exercicio" name="exercicio">
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Set" name="set"> 
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="text" placeholder="Reps" name="reps">                                      
-                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=10&idDay=<?php echo $idDay ?>&iduser=<?php echo $iduser ?>">Adicionar</button>
-                <a class="btn btn-primary btn-block py-2 my-3" href="createtrainday.php?iduser=<?php echo $iduser ?>">Voltar</a>
+                <a class="btn btn-primary btn-block py-2 my-3" href="vertrainplan.php?iduser=<?php echo $iduser ?>">Voltar</a>
               </div>
             </div>
           </div>
