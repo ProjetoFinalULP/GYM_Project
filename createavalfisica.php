@@ -34,51 +34,51 @@
                   <option value="F">F</option>
                 </select>
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Idade" name="idade">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Idade" name="idade">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Altura" name="altura">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Altura" name="altura">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Peso" name="peso">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Peso" name="peso">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Massa Gorda (%)" name="massagordap">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number"  step="0.01" placeholder="Massa Gorda (%)" name="massagordap">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Massa Magra (kg)" name="massamagrakg">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Massa Magra (kg)" name="massamagrakg">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Idade Metabolica" name="idademetabolica">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Idade Metabolica" name="idademetabolica">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Percentagem de água corpural" name="aguacorpural">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Percentagem de água corpural" name="aguacorpural">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Cintura" name="cintura">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Cintura" name="cintura">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Anca" name="anca">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Anca" name="anca">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Pescoço" name="pescoco">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Pescoço" name="pescoco">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Ombro" name="ombro">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Ombro" name="ombro">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Tórax" name="torax">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Tórax" name="torax">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Abdómen" name="abdomen">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Abdómen" name="abdomen">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Braço direito contraido" name="bracodireitocontraido">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Braço direito contraido" name="bracodireitocontraido">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Braço direito descontraido" name="bracodireitodescontraido">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Braço direito descontraido" name="bracodireitodescontraido">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Braço esquerdo contraido" name="bracoesquerdocontraido">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Braço esquerdo contraido" name="bracoesquerdocontraido">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Braço esquerdo descontraido" name="bracoesquerdodescontraido">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Braço esquerdo descontraido" name="bracoesquerdodescontraido">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Antebraço esquerdo" name="antebracoesquerdo">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Antebraço esquerdo" name="antebracoesquerdo">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Antebraço direiro" name="antebracodireito">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Antebraço direiro" name="antebracodireito">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Coxa esquerda" name="coxaesquerda">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Coxa esquerda" name="coxaesquerda">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Coxa direita" name="coxadireira">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Coxa direita" name="coxadireira">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Gémeo esquerdo" name="gemeoesquerdo">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Gémeo esquerdo" name="gemeoesquerdo">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
-                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" placeholder="Gémeo direito" name="gemeodireito">
+                <input class="form-control my-3 bg-light" id="input1-signin-03" type="number" step="0.01" placeholder="Gémeo direito" name="gemeodireito">
                 <label class="sr-only" for="input1-signin-03">Name Exercicio</label>
                 <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=7">Guardar</button>
               </div>
