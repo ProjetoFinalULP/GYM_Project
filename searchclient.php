@@ -18,21 +18,22 @@
     <div class="container-fluid">         
     <?php
       include 'menu.inc';
-      include 'autocomplete.php';
+      //include 'autocomplete.php';
+      //<script>autocomplete(document.getElementById("myInput"), iduser);</script>
     ?>
-    <script>autocomplete(document.getElementById("myInput"), iduser);</script>
+    
                 
       <section>
-        <form method="post" name="createexe" action="createtrainday.php" autocomplete="off" >
+        <form method="get" name="createexe" autocomplete="off" >
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-5 col-lg-4">
                 <div class="autocomplete"> 
                   <input class="form-control my-3 bg-light" id="myInput" type="text" placeholder="ID Utilizador" name="iduser">
                 </div>                                  
-                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=8">Ver Plano de Treino</button>
-                <button class="btn btn-primary btn-block py-2 my-3" type="submit" name="procurar">Ver Plano Alimentar</button>
-                <button class="btn btn-primary btn-block py-2 my-3" type="submit" name="procurar">Ver Avaliação Fisica</button>
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="vertrainplan.php" type="submit" name="procurar">Ver Plano de Treino</button>
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="verplanalim.php" type="submit" name="procurar">Ver Plano Alimentar</button>
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="veravalfisica.php" type="submit" name="procurar">Ver Avaliação Fisica</button>
               </div>
             </div>
           </div>

@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <?php
+//Testing stuff
 session_start();
 include 'config.inc';
 
@@ -13,10 +11,8 @@ include 'config.inc';
              }
     ];
 ?>
-</head>
-<body>
 <script>
-var iduser = <?php echo $iduser; ?>;
+var iduser = <?php echo $iduser ?>;
 function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -114,5 +110,3 @@ document.addEventListener("click", function (e) {
 });
 }
 </script>
-</body>
-</html>

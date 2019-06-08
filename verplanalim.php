@@ -16,6 +16,20 @@
     
     <?php
       include 'menu.inc';
+      session_start();
+    
+      include 'config.inc';
+
+
+
+      if(isset($_GET['procurar'])){
+        $user = $_GET['iduser'];
+        $userLogedIn = $_SESSION['user'];
+      }else{
+        $user = $_SESSION['user'];
+      }
+
+     // $user = $_SESSION['user'];
     ?>
                 
       <section>
@@ -23,7 +37,7 @@
           <div class="container">
             <div class="row justify-content-center">
               <div class="col-md-5 col-lg-4">            
-                <button class="btn btn-primary btn-block py-2 my-3" type="submit" name="download_palm">Download</button>
+                <button class="btn btn-primary btn-block py-2 my-3" type="submit" name="download_palm">Download<?php echo $user ?> / <?php echo $userLogedIn ?></button>
                 
               </div>
             </div>
@@ -31,11 +45,6 @@
           </form>
       </section>
 <?php     
-        session_start();
-    
-        include 'config.inc';
-
-        $user = $_SESSION['user'];
        
         $sql_palm = "SELECT plan FROM nutritionPlan WHERE userUsername = '$user' AND status = 'Y'";
         $result_palm = mysqli_query($conn, $sql_palm);
@@ -62,9 +71,28 @@
 
 echo "<embed src='$file' type='application/pdf' width='100%' height='600px' />";
         
-   
+ 
+if(isset($userLogedIn)){
+?>
+      <section>
+        <form method="post" name="createexe" enctype="multipart/form-data">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-md-5 col-lg-4">
+                <textarea class="form-control mb-3" id="textarea-contacts-02" rows="5" placeholder="Inserir Comentário" name="coment"></textarea>             
+                <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=4">Guardar</button>
+              </div>
+            </div>
+          </div>
+          </form>
+      </section>
 
 
+
+
+
+<?php
+}
 ?>
     </div>
     <script src="js/jquery/jquery.min.js"></script>

@@ -402,8 +402,99 @@
 
     break;
 
+    case 14:
+
+        $user = $_SESSION['user'];
+        $roomId = $_GET['id'];
+
+        $nome = $_POST['nome'];
+        $capacidade = $_POST['capacidade'];
+
+        $sql_u = "UPDATE classroom SET description = '$nome', capacity = '$capacidade' WHERE id = '$roomId'";
+        $result_u = mysqli_query($conn, $sql_u);
+
+        header("Location: salas.php");
+
+    break;
+
+    case 15:
+
+        $user = $_SESSION['user'];
+
+        $nome = $_POST['nome'];
+        $sala = $_POST['sala'];
+        $duracao = $_POST['duracao'];
+        $intensidade = $_POST['intensidade'];
+
+        $sql_i = "INSERT INTO class (description, classroomId, duration, intensityLevel, userCreation, dateCreation)
+                                    VALUES ('$nome', '$sala', '$duracao', '$intensidade', '$user', now())";
+        $result_i = mysqli_query($conn, $sql_i);
+
+        header("Location: aulas.php");
+
+    break;
+
+    case 16:
+
+        $user = $_SESSION['user'];
+        $classId = $_GET['id'];
+
+        $sql_u = "UPDATE class SET active = 'N' WHERE id = '$classId'";
+        $result_u = mysqli_query($conn, $sql_u);
+
+        header("Location: aulas.php");
+
+    break;
+
+    case 17:
+
+        $user = $_SESSION['user'];
+        $classId = $_GET['id'];
+
+        $nome = $_POST['nome'];
+        $sala = $_POST['sala'];
+        $duracao = $_POST['duracao'];
+        $intensidade = $_POST['intensidade'];
+
+        $sql_u = "UPDATE class SET description = '$nome', classroomId = '$sala', duration = '$duracao', intensityLevel = '$intensidade'
+                  WHERE id = '$classId'";
+        $result_u = mysqli_query($conn, $sql_u);
+
+        header("Location: aulas.php");
+
+    break;
+
+    case 18:
+
+        $user = $_SESSION['user'];
+
+        $aula = $_POST['aula'];
+        //$dataInicio = $_POST['dataInicio'];
+        //$dataFim = $_POST['dataFim'];
+        $hora = $_POST['hora'];
+        $minutos = $_POST['minutos'];
+
+        $dataInicio = '2019-06-01';
+        $dataFim = '2019-09-01';
+
+        $startHour = $hora.":".$minutos;
 
 
+        $date = $dataInicio;
+
+        while($date >= $dataInicio && $date <= $dataFim){
+            
+            $sql_i = "INSERT INTO classCalendar (classId, dateClass, startHour, userCreation, dateCreation)
+                                            VALUES ('$aula', '$date', '$startHour', '$user', now())";
+            $result_i = mysqli_query($conn, $sql_i);
+
+            $date = date('Y-m-d', strtotime($date . ' + 7 days'));
+        }
+        
+
+        header("Location: aulas.php");
+
+    break;
 
 
 
