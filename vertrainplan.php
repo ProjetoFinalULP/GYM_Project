@@ -16,7 +16,12 @@
     session_start(); 
     include 'config.inc';
     
-    $iduser = $_SESSION['user'];
+    if(isset($_GET['procurar'])){
+      $user = $_GET['iduser'];
+      $userLogedIn = $_SESSION['user'];
+    }else{
+      $user = $_SESSION['user'];
+    }
   
    
     $sql_sele = "SELECT id FROM trainingPlan WHERE userUsername = '$iduser' AND active='Y'";
@@ -56,7 +61,58 @@
           </div>
           </form>
       </section>
-      
+<?php
+if(isset($userLogedIn)){
+  ?>
+        <section>
+          <form method="post">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-md-5 col-lg-4">
+                  <textarea class="form-control mb-3" id="textarea-contacts-02" rows="5" placeholder="Inserir Comentário" name="coment"></textarea>             
+                  <button class="btn btn-primary btn-block py-2 my-3" formaction="save.php?s=22&iduser=<?php echo $user ?>">Guardar</button>
+                </div>
+              </div>
+            </div>
+            </form>
+        </section>
+  <?php
+  $sql_exe = "SELECT content FROM trainingPlanComment WHERE userUsername = '$user'";
+                
+               
+  $result_exe = mysqli_query($conn, $sql_exe);
+  $row_exe = mysqli_fetch_array($result_exe);
+  
+  ?>
+        <section class="py-4">
+          <div class="container-fluid">
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Comentario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                 <?php 
+                    if(mysqli_num_rows($result_exe) > 0){
+                      while($row_exe = mysqli_fetch_array($result_exe)){
+                  ?>
+                        <tr>
+                          <td><?php echo $row_exe['content'];?></td>
+                        </tr>
+                  <?php
+                      }
+                    }
+                  ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+  <?php
+  }
+?>
     </div>
     <script src="js/jquery/jquery.min.js"></script>
     <script src="js/popper/popper.min.js"></script>

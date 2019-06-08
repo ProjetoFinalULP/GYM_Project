@@ -496,8 +496,65 @@
 
     break;
 
+    case 19:
+
+        $user = $_SESSION['user'];
+        $classId = $_GET['id'];
+
+        $sql_i = "INSERT INTO subscribeClass (userUsername, classCalendarId, userCreation, dateCreation)
+                                             VALUES ('$user', '$classId', '$user', now())";
+        $result_i = mysqli_query($conn, $sql_i);
+
+        header("Location: calendar.php");
+
+    break;
+
+    case 20:
+
+        $user = $_SESSION['user'];
+        $classId = $_GET['id'];
+
+        $sql_u = "UPDATE subscribeClass SET active = 'N' WHERE classCalendarId = '$classId' AND userUsername = '$user'";
+        $result_i = mysqli_query($conn, $sql_u);
+
+        header("Location: calendar.php");
+    
+    break;
+
+    case 21:
+    $userLogedIn = $_SESSION['user'];
+    $coment = $_POST['coment'];
+    $iduser = $_GET['iduser'];
+    
+    $sql_e = "INSERT INTO nutritionPlanComments (content, active, userCreation, dateCreation, userUsername) VALUES ('$coment', 'Y', '$userLogedIn', now(), '$iduser')";
+    $result_e = mysqli_query($conn, $sql_e);
+    
+    header("Location: searchclient.php");
+
+    break;
+
+    case 22:
+    $userLogedIn = $_SESSION['user'];
+    $coment = $_POST['coment'];
+    $iduser = $_GET['iduser'];
+    
+    $sql_e = "INSERT INTO trainingPlanComment (content, acive, userCreation, dateCreation, userUsername) VALUES ('$coment', 'Y', '$userLogedIn', now(), '$iduser')";
+    $result_e = mysqli_query($conn, $sql_e);
+    
+    header("Location: searchclient.php");
+    break;
 
 
+    case 23:
+    $userLogedIn = $_SESSION['user'];
+    $coment = $_POST['coment'];
+    $iduser = $_GET['iduser'];
+    
+    $sql_e = "INSERT INTO physicalEvaluationComments (content, active, userCreation, dateCreation, userUsername) VALUES ('$coment', 'Y', '$userLogedIn', now(), '$iduser')";
+    $result_e = mysqli_query($conn, $sql_e);
+    
+    header("Location: searchclient.php");
+    break;
 
 
     }
