@@ -9,27 +9,44 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="icon" href="favicon.ico">
   </head>
-  <body>
 
-  
-    <div class="container-fluid">         
-    
-    <?php
-      include 'menu.inc';
+  <?php
       session_start();
     
       include 'config.inc';
 
-
-
-      if(isset($_GET['procurar'])){
+      if(isset($_GET['iduser'])){
         $user = $_GET['iduser'];
         $userLogedIn = $_SESSION['user'];
+
+        $sql_u = "SELECT firstName,
+                        lastName
+                FROM user
+                WHERE username = '$userLogedIn'";
+        $result_u = mysqli_query($conn, $sql_u);
+        $row_u = mysqli_fetch_array($result_u);
+
       }else{
         $user = $_SESSION['user'];
+
+        $sql_u = "SELECT firstName,
+                        lastName
+                FROM user
+                WHERE username = '$user'";
+        $result_u = mysqli_query($conn, $sql_u);
+        $row_u = mysqli_fetch_array($result_u);
+
       }
 
-     // $user = $_SESSION['user'];
+      //$user = $_SESSION['user'];
+    ?>
+
+  <body>
+
+  
+    <div class="container-fluid">         
+    <?php
+      include 'menu.inc';
     ?>
                 
       <section>

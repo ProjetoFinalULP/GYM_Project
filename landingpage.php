@@ -39,13 +39,13 @@
                 WHERE active = 'Y'";
     $result_user = mysqli_query($conn, $sql_user);
 
-    $sql_menu = "SELECT description,
+    /*$sql_menu = "SELECT description,
                         link,
                         category,
                         accessId
                  FROM menu
                  WHERE active = 'Y'";
-    $result_menu = mysqli_query($conn, $sql_menu);
+    $result_menu = mysqli_query($conn, $sql_menu);*/
 
 ?>
 

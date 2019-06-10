@@ -15,10 +15,10 @@
       include 'config.inc';
 
       if(isset($_GET['procurar'])){
-        $user = $_GET['iduser'];
+        $iduser = $_GET['iduser'];
         $userLogedIn = $_SESSION['user'];
       }else{
-        $user = $_SESSION['user'];
+        $iduser = $_SESSION['user'];
       }
 
     $sql_sel1 = "SELECT metabolicAge, bodyWater, imc, waistHipRatio, dateCreation
@@ -230,7 +230,7 @@ if(isset($userLogedIn)){
             </form>
         </section>
   <?php
-  $sql_exe = "SELECT content FROM physicalEvaluationComments WHERE userUsername = '$user'";
+  $sql_exe = "SELECT content FROM physicalEvaluationComments WHERE userUsername = '$iduser'";
                 
                
   $result_exe = mysqli_query($conn, $sql_exe);

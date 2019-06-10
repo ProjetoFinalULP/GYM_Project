@@ -534,28 +534,79 @@
     break;
 
     case 22:
-    $userLogedIn = $_SESSION['user'];
-    $coment = $_POST['coment'];
-    $iduser = $_GET['iduser'];
-    
-    $sql_e = "INSERT INTO trainingPlanComment (content, acive, userCreation, dateCreation, userUsername) VALUES ('$coment', 'Y', '$userLogedIn', now(), '$iduser')";
-    $result_e = mysqli_query($conn, $sql_e);
-    
-    header("Location: searchclient.php");
+
+        $userLogedIn = $_SESSION['user'];
+        $coment = $_POST['coment'];
+        $iduser = $_GET['iduser'];
+        
+        $sql_e = "INSERT INTO trainingPlanComment (content, acive, userCreation, dateCreation, userUsername) VALUES ('$coment', 'Y', '$userLogedIn', now(), '$iduser')";
+        $result_e = mysqli_query($conn, $sql_e);
+        
+        header("Location: searchclient.php");
+
     break;
 
 
     case 23:
-    $userLogedIn = $_SESSION['user'];
-    $coment = $_POST['coment'];
-    $iduser = $_GET['iduser'];
-    
-    $sql_e = "INSERT INTO physicalEvaluationComments (content, active, userCreation, dateCreation, userUsername) VALUES ('$coment', 'Y', '$userLogedIn', now(), '$iduser')";
-    $result_e = mysqli_query($conn, $sql_e);
-    
-    header("Location: searchclient.php");
+
+        $userLogedIn = $_SESSION['user'];
+        $coment = $_POST['coment'];
+        $iduser = $_GET['iduser'];
+        
+        $sql_e = "INSERT INTO physicalEvaluationComments (content, active, userCreation, dateCreation, userUsername) VALUES ('$coment', 'Y', '$userLogedIn', now(), '$iduser')";
+        $result_e = mysqli_query($conn, $sql_e);
+        
+        header("Location: searchclient.php");
+
     break;
 
+    case 24: //retirar professor de aula
+
+        $classId = $_GET['id'];
+
+        $sql_u = "UPDATE classCalendar SET assignedTo = '' WHERE id = '$classId'";
+        $result_u = mysqli_query($conn, $sql_u);
+
+        header("Location: assignWork.php?f=1&i=3");
+
+    break;
+
+    case 25: //assignar professor a aula
+
+        $classId = $_GET['id'];
+        $professor = $_POST['worker'];
+
+        $sql_u = "UPDATE classCalendar SET assignedTo = '$professor' WHERE id = '$classId'";
+        $result_u = mysqli_query($conn, $sql_u);
+
+        header("Location: assignWork.php?f=1&i=3");
+
+    break;
+
+    case 26: //retirar nutricionista de avaliação/professor de treino
+
+        $evalId = $_GET['id'];
+        $f = $_GET['f'];
+
+        $sql_u = "UPDATE evaluationCalendar SET assignedTo = '' WHERE id = '$evalId'";
+        $result_u = mysqli_query($conn, $sql_u);
+
+        header("Location: assignWork.php?f=$f&i=3");
+
+    break;
+
+    case 27: //assignar nutricionista a avaliação/professor de treino
+
+        $evalId = $_GET['id'];
+        $f = $_GET['f'];
+        $professor = $_POST['worker'];
+
+        $sql_u = "UPDATE evaluationCalendar SET assignedTo = '$professor' WHERE id = '$evalId'";
+        $result_u = mysqli_query($conn, $sql_u);
+
+        header("Location: assignWork.php?f=$f&i=3");
+
+    break;
 
     }
 ?>

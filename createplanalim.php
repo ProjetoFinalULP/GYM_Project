@@ -9,11 +9,25 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
     <link rel="icon" href="favicon.ico">
   </head>
+
+  <?php
+
+    session_start();
+
+    include 'config.inc';
+
+    $user = $_SESSION['user'];
+    $access = $_SESSION['access'];
+
+    $sql_u = "SELECT firstName,
+                      lastName
+              FROM user
+              WHERE username = '$user'";
+    $result_u = mysqli_query($conn, $sql_u);
+    $row_u = mysqli_fetch_array($result_u);
+
+  ?>
   <body>
-<?php
- session_start();
-?>
-  
     <div class="container-fluid">         
     <?php
       include 'menu.inc';
